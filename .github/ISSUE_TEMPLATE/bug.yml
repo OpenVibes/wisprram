@@ -1,0 +1,36 @@
+name: Bug report
+description: Something does not work as expected
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What did you do, what did you expect, what happened instead?
+    validations:
+      required: true
+  - type: dropdown
+    id: where
+    attributes:
+      label: Where does it happen?
+      options: [App, Server, Both / not sure, Docs or website]
+    validations:
+      required: true
+  - type: input
+    id: versions
+    attributes:
+      label: Versions
+      description: App version (About in Settings) and server version (`wisprram-server --version`).
+      placeholder: "app 0.2.0, server 0.2.0"
+  - type: input
+    id: os
+    attributes:
+      label: Your system
+      description: OS and version of the computer running the app; for Linux also X11 or Wayland. For the server also the GPU.
+      placeholder: "macOS 15 (M2) / Ubuntu 24.04, RTX 4060"
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs and `doctor` output
+      description: "Server: `./scripts/run.sh doctor` and `journalctl --user -u wisprram -e`. App: `logs/main.log` in the settings folder (see docs/CLIENT_SETUP.md). Remove anything private."
+      render: shell

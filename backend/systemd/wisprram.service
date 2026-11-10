@@ -1,0 +1,20 @@
+# Template: scripts/install-service.sh fills in @BACKEND_DIR@ and installs it as ~/.config/systemd/user/wisprram.service.
+# Override settings (WISPRRAM_PORT, WISPRRAM_DATA_DIR, WISPRRAM_STT_MODEL, ...) in ~/.config/wisprram/server.env,
+# one KEY=value per line, then `systemctl --user restart wisprram`.
+[Unit]
+Description=WisprRam dictation server (faster-whisper + Ollama)
+After=network-online.target ollama.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=@BACKEND_DIR@
+ExecStart="@BACKEND_DIR@/scripts/run.sh" serve
+Environment=WISPRRAM_HOST=0.0.0.0
+Environment=WISPRRAM_PORT=8790
+EnvironmentFile=-%h/.config/wisprram/server.env
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target

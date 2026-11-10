@@ -1,0 +1,52 @@
+{
+  "name": "wisprram",
+  "productName": "WisprRam",
+  "version": "0.2.0",
+  "description": "Self-hosted voice dictation client for WisprRam server",
+  "author": "Anirudh Sharma <126901961+anisharma07@users.noreply.github.com>",
+  "license": "MIT",
+  "homepage": "https://openvibes.github.io/wisprram/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OpenVibes/wisprram.git",
+    "directory": "client"
+  },
+  "bugs": {
+    "url": "https://github.com/OpenVibes/wisprram/issues"
+  },
+  "private": true,
+  "main": "./out/main/index.js",
+  "scripts": {
+    "dev": "electron-vite dev",
+    "build": "electron-vite build",
+    "preview": "electron-vite preview",
+    "typecheck": "tsc --noEmit -p tsconfig.node.json && tsc --noEmit -p tsconfig.web.json",
+    "test": "vitest run",
+    "ui:mock": "vite --config vite.mock.config.ts",
+    "dist:mac": "electron-vite build && electron-builder --mac --arm64",
+    "dist:win": "electron-vite build && electron-builder --win --x64",
+    "dist:linux": "electron-vite build && electron-builder --linux --x64"
+  },
+  "dependencies": {
+    "uiohook-napi": "^1.5.5"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.3.0",
+    "electron": "^45.2.3",
+    "electron-builder": "^26.18.0",
+    "electron-vite": "^6.0.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.7",
+    "vitest": "^5.1.0"
+  },
+  "allowScripts": {
+    "electron@45.2.3": true,
+    "electron-winstaller@5.4.0": true,
+    "uiohook-napi@1.5.5": true
+  }
+}

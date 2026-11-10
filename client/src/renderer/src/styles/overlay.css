@@ -1,0 +1,244 @@
+/* Fonts are bundled; Figtree is shared with the main window (SIL OFL, see assets/fonts). */
+@font-face {
+  font-family: 'Figtree';
+  font-style: normal;
+  font-weight: 300 900;
+  font-display: swap;
+  src: url('../assets/fonts/Figtree-latin-wght-normal.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2212;
+}
+:root {
+  --font: 'Figtree', -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, Roboto, sans-serif;
+}
+html,
+body,
+#root {
+  margin: 0;
+  height: 100%;
+  background: transparent !important;
+  overflow: hidden;
+  user-select: none;
+  -webkit-user-select: none;
+  pointer-events: none;
+  cursor: default;
+}
+body {
+  font: 13px/1 var(--font);
+  color: #f4f4f8;
+  -webkit-font-smoothing: antialiased;
+}
+.stage {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+
+.pill {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-width: 120px;
+  max-width: 230px;
+  height: 36px;
+  padding: 0 16px;
+  border-radius: 999px;
+  color: #fff;
+  background: #0b0b0c;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1), 0 6px 18px rgba(0, 0, 0, 0.35), 0 1px 3px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transform: translateY(6px) scale(0.92);
+  transition: opacity 170ms cubic-bezier(0.2, 0.7, 0.2, 1), transform 170ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  will-change: opacity, transform;
+  white-space: nowrap;
+}
+.pill.in {
+  opacity: 1;
+  transform: none;
+}
+.glyph {
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  flex: none;
+}
+.label {
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.005em;
+  color: #fff;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.command .label {
+  color: rgba(255, 255, 255, 0.78);
+}
+.timer {
+  font-variant-numeric: tabular-nums;
+  font-size: 12.5px;
+  font-weight: 560;
+  color: rgba(255, 255, 255, 0.72);
+  min-width: 34px;
+  text-align: right;
+}
+
+.wave {
+  display: flex;
+  align-items: center;
+  gap: 2.5px;
+  height: 20px;
+}
+.wave i {
+  display: block;
+  width: 3px;
+  height: 20px;
+  border-radius: 3px;
+  background: #fff;
+  transform: scaleY(0.14);
+  transform-origin: center;
+  transition: transform 60ms linear;
+}
+
+/* processing: a few bars breathing gently */
+.proc {
+  display: inline-flex;
+  align-items: center;
+  gap: 3.5px;
+  height: 20px;
+}
+.proc i {
+  display: block;
+  width: 3px;
+  height: 18px;
+  border-radius: 3px;
+  background: #fff;
+  opacity: 0.85;
+  transform: scaleY(0.3);
+  animation: breathe 1.3s ease-in-out infinite;
+}
+.proc i:nth-child(2) {
+  animation-delay: 0.12s;
+}
+.proc i:nth-child(3) {
+  animation-delay: 0.24s;
+}
+.proc i:nth-child(4) {
+  animation-delay: 0.36s;
+}
+.proc i:nth-child(5) {
+  animation-delay: 0.48s;
+}
+@keyframes breathe {
+  0%,
+  100% {
+    transform: scaleY(0.3);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scaleY(0.85);
+    opacity: 1;
+  }
+}
+.sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.check {
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.16);
+  color: #fff;
+  animation: pop 260ms cubic-bezier(0.2, 0.9, 0.3, 1.4);
+}
+@keyframes pop {
+  from {
+    transform: scale(0.4);
+  }
+}
+.err-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ff6b6b;
+  flex: none;
+}
+.label.err {
+  color: #fff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pill {
+    transition: opacity 120ms linear;
+    transform: none;
+  }
+  .proc i {
+    animation: none;
+    transform: scaleY(0.55);
+  }
+}
+
+/* ---- dev-only (mock bridge) ---- */
+body:has(.stage.mocked) {
+  pointer-events: auto;
+  overflow: auto;
+  background: #3a3a46 !important;
+}
+.stage.mocked {
+  position: relative;
+  inset: auto;
+  width: 280px;
+  height: 80px;
+  margin: 48px auto 24px;
+  outline: 1px dashed rgba(255, 255, 255, 0.35);
+  background: repeating-conic-gradient(#4b4b58 0% 25%, #43434f 0% 50%) 0 0 / 16px 16px;
+}
+.dev-strip {
+  pointer-events: auto;
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.35);
+  font-size: 12.5px;
+  line-height: 1.5;
+}
+.dev-state {
+  opacity: 0.7;
+  margin-left: 8px;
+}
+.dev-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+  margin-top: 8px;
+}
+.dev-row span {
+  width: 80px;
+  opacity: 0.7;
+}
+.dev-row button {
+  font: inherit;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 7px;
+  padding: 3px 9px;
+  cursor: pointer;
+}
+.dev-row button:hover {
+  background: rgba(255, 255, 255, 0.25);
+}

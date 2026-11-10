@@ -1,0 +1,494 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WisprRam – Your voice, your GPU, your words</title>
+<meta name="description" content="Hold a key, speak, and cleaned-up text appears in any app. WisprRam is a free, open-source voice dictation tool that runs on your own GPU. Nothing leaves your network.">
+<meta name="theme-color" content="#F7F6F3" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#141312" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://openvibes.github.io/wisprram/">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="64x64" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="WisprRam">
+<meta property="og:title" content="WisprRam – Your voice, your GPU, your words">
+<meta property="og:description" content="Free, open-source voice dictation that runs on your own GPU. Hold a key, speak, and clean text appears in any app.">
+<meta property="og:url" content="https://openvibes.github.io/wisprram/">
+<meta property="og:image" content="https://openvibes.github.io/wisprram/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="WisprRam: your voice, your GPU, your words">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="WisprRam – Your voice, your GPU, your words">
+<meta name="twitter:description" content="Free, open-source voice dictation that runs on your own GPU. Nothing leaves your network.">
+<meta name="twitter:image" content="https://openvibes.github.io/wisprram/assets/og.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"WisprRam","applicationCategory":"ProductivityApplication","operatingSystem":"macOS, Windows, Linux","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"license":"https://opensource.org/licenses/MIT","description":"Self-hosted, open-source voice dictation that runs on your own GPU."}
+</script>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-mic" viewBox="0 0 24 24"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><path d="M12 19v3"/></symbol>
+    <symbol id="i-sparkles" viewBox="0 0 24 24"><path d="M11 3l1.9 5.1L18 10l-5.1 1.9L11 17l-1.9-5.1L4 10l5.1-1.9L11 3Z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8L19 15Z"/></symbol>
+    <symbol id="i-prompt" viewBox="0 0 24 24"><path d="M4 17l6-6-6-6"/><path d="M12 19h8"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></symbol>
+    <symbol id="i-layers" viewBox="0 0 24 24"><path d="M12 2l10 5-10 5L2 7l10-5Z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></symbol>
+    <symbol id="i-monitor" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></symbol>
+    <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8Z"/></symbol>
+    <symbol id="i-folder" viewBox="0 0 24 24"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.7-.9l-.8-1.2A2 2 0 0 0 7.9 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 4v12M6 11l6 6 6-6M5 21h14"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.9L12 17.8 5.8 21l1.2-6.9-5-4.9 6.9-1L12 2Z"/></symbol>
+    <symbol id="i-gh" viewBox="0 0 16 16"><path fill="currentColor" stroke="none" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></symbol>
+  </defs>
+</svg>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav" id="top">
+  <div class="wrap nav-in">
+    <a class="brand" href="#top" aria-label="WisprRam home">
+      <img src="assets/favicon.png" width="30" height="30" alt="" decoding="async">
+      <span>WisprRam</span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#features">Features</a>
+      <a href="#how">How it works</a>
+      <a href="#setup">Setup</a>
+      <a href="#faq">FAQ</a>
+      <a data-gh="/tree/main/docs" href="#" rel="noopener">Docs</a>
+    </nav>
+    <a class="btn btn-ghost btn-sm stars" data-gh="" href="#" rel="noopener" aria-label="Star WisprRam on GitHub">
+      <svg class="ic" aria-hidden="true"><use href="#i-gh"/></svg>
+      <span>Star</span><b id="star-count" hidden></b>
+    </a>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ================================================================ HERO -->
+<section class="hero wrap" aria-labelledby="hero-title">
+  <p class="eyebrow"><span class="dot" aria-hidden="true"></span>Free · open source · self-hosted</p>
+  <h1 id="hero-title">Your voice, your <em>GPU,</em><br class="br-lg"> your words.</h1>
+  <p class="lead">Hold a key, speak, and clean text appears in any app. WisprRam runs speech recognition and cleanup on a machine you own, so your voice never leaves your network.</p>
+
+  <div class="cta" id="cta">
+    <a class="btn btn-primary btn-lg" id="dl-primary" data-gh="/releases/latest" href="#" rel="noopener">
+      <svg class="ic" aria-hidden="true"><use href="#i-down"/></svg>
+      <span id="dl-primary-label">Download WisprRam</span>
+    </a>
+    <a class="btn btn-secondary btn-lg" href="#setup">Self-host the server</a>
+  </div>
+  <p class="cta-note" id="dl-note">macOS, Windows and Linux · MIT licensed · <a href="#download">Other platforms</a></p>
+
+  <div class="demo" id="demo" role="img" aria-label="Animated demo: a small black recording pill shows a waveform while someone speaks; the cleaned-up sentence then types itself into an email.">
+    <div class="win" aria-hidden="true">
+      <div class="win-bar">
+        <span class="tl r"></span><span class="tl y"></span><span class="tl g"></span>
+        <span class="win-title" id="demo-title">Mail · New message</span>
+      </div>
+      <div class="win-body">
+        <div class="field"><span>To</span><span>sam@example.com</span></div>
+        <div class="field"><span>Subject</span><span id="demo-subject">Quick question</span></div>
+        <p class="editor" id="demo-editor"><span id="demo-text"></span><i class="caret"></i></p>
+      </div>
+    </div>
+    <div class="heard" id="demo-heard" aria-hidden="true"><span>You said</span><q id="demo-said"></q></div>
+    <div class="pill" id="demo-pill" data-state="idle" aria-hidden="true">
+      <span class="bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================ NUMBERS -->
+<section class="wrap stats" aria-label="At a glance">
+  <div class="stat"><b>0.43<small>s</small></b><span>for a 3 second dictation on a laptop RTX 4060</span></div>
+  <div class="stat"><b>0<small> bytes</small></b><span>sent to anyone but your own server</span></div>
+  <div class="stat"><b>4.4<small> GB</small></b><span>of VRAM for both models; fits an 8 GB card</span></div>
+  <div class="stat"><b>MIT</b><span>free forever, no account, no subscription</span></div>
+</section>
+
+<!-- ================================================================ FEATURES -->
+<section class="wrap section" id="features" aria-labelledby="features-title">
+  <h2 id="features-title" class="h2">Everything you expect from a <em>modern</em> dictation tool.</h2>
+  <p class="sub">And one thing you do not: someone else's server.</p>
+
+  <div class="grid">
+    <article class="card">
+      <span class="ico"><svg class="ic"><use href="#i-mic"/></svg></span>
+      <h3>Push-to-talk, anywhere</h3>
+      <p>Hold <kbd>Right Option</kbd> or <kbd>Right Ctrl</kbd>, talk, let go. The text is typed into whatever app has focus. Double-tap to lock hands-free; <kbd>Esc</kbd> cancels.</p>
+    </article>
+    <article class="card">
+      <span class="ico"><svg class="ic"><use href="#i-sparkles"/></svg></span>
+      <h3>Cleanup that gets it right</h3>
+      <p>Drops the ums and uhs, resolves self-corrections (“at 4, no, 5” becomes “at 5”), fixes punctuation, turns spoken lists into lists. Choose none, light or full.</p>
+    </article>
+    <article class="card">
+      <span class="ico"><svg class="ic"><use href="#i-prompt"/></svg></span>
+      <h3>Command mode</h3>
+      <p>Select text, press <kbd>Ctrl/⌘ Shift E</kbd> and say “make this more polite” or “translate to Spanish”. The selection is replaced in place.</p>
+    </article>
+  </div>
+
+  <div class="banner banner-a" id="snippets">
+    <div class="banner-copy">
+      <h3>The stuff <em>you</em> shouldn’t have to re-type.</h3>
+      <p>Save text you type often, like an email, an intro or a prompt, then say a few words to drop it in instantly. Snippets are protected from the AI, so they always come out word for word.</p>
+      <div class="chips" aria-label="Snippet examples">
+        <div class="chip-row"><span class="chip say">“my email”</span><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg><span class="chip">you@example.com</span></div>
+        <div class="chip-row"><span class="chip say">“standup template”</span><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg><span class="chip">Yesterday: … Today: … Blockers: …</span></div>
+        <div class="chip-row"><span class="chip say">“sign off”</span><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg><span class="chip">Thanks, and talk soon.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid">
+    <article class="card">
+      <span class="ico"><svg class="ic"><use href="#i-book"/></svg></span>
+      <h3>Personal dictionary</h3>
+      <p>Teach it your names, products and jargon. They are given to Whisper as hotwords and to the LLM as preferred spellings.</p>
+    </article>
+    <article class="card">
+      <span class="ico"><svg class="ic"><use href="#i-layers"/></svg></span>
+      <h3>Styles per app</h3>
+      <p>Formal in Mail, casual in Slack, very casual in Messages. Pick a default and override it for any app.</p>
+    </article>
+    <article class="card">
+      <span class="ico"><svg class="ic"><use href="#i-clock"/></svg></span>
+      <h3>History and stats</h3>
+      <p>Search, copy and replay everything you dictated, and see your words, speed and streak. Delete anything, any time.</p>
+    </article>
+  </div>
+
+  <div class="banner banner-b" id="archive">
+    <div class="banner-copy">
+      <h3>Keep every word. <em>On your own disk.</em></h3>
+      <p>Switch on the local archive and each dictation is saved to a folder you choose: the recording, what Whisper heard, the selection you edited, the final text and a small metadata file. Plain files you can search, back up and keep forever.</p>
+      <ul class="ticks">
+        <li>Audio, transcript, output and details, each with its own toggle</li>
+        <li>Failed requests still keep the audio, so nothing is ever lost</li>
+        <li>Optional server-side recordings to replay history on any device</li>
+      </ul>
+    </div>
+    <div class="tree" aria-label="Example archive folder structure">
+<pre><code><b>WisprRam/</b>
+  index.jsonl
+  <b>2026-03-14/</b>
+    <b>093012-dictation-a1b2c3d4/</b>
+      audio.webm
+      transcript.txt   <span>what Whisper heard</span>
+      output.txt       <span>the cleaned text</span>
+      meta.json        <span>models, timings, app…</span>
+    <b>093455-command-e5f6a7b8/</b>
+      audio.webm
+      transcript.txt   <span>“make it shorter”</span>
+      input.txt        <span>the selected text</span>
+      output.txt
+      meta.json</code></pre>
+    </div>
+  </div>
+
+  <div class="grid">
+    <article class="card">
+      <span class="ico"><svg class="ic"><use href="#i-lock"/></svg></span>
+      <h3>Private by design</h3>
+      <p>No cloud, no accounts, no telemetry. Audio travels from your computer to your server and nowhere else. Use Tailscale to reach it away from home.</p>
+    </article>
+    <article class="card">
+      <span class="ico"><svg class="ic"><use href="#i-bolt"/></svg></span>
+      <h3>Genuinely fast</h3>
+      <p>faster-whisper large-v3-turbo on CUDA plus a small local LLM: under a second for a typical sentence, with a CPU fallback when there is no GPU.</p>
+    </article>
+    <article class="card">
+      <span class="ico"><svg class="ic"><use href="#i-monitor"/></svg></span>
+      <h3>macOS, Windows, Linux</h3>
+      <p>Light Electron apps for all three, with a tray icon, an overlay pill and sound cues. One server serves every computer you own.</p>
+    </article>
+  </div>
+</section>
+
+<!-- ================================================================ SCREENSHOTS -->
+<section class="wrap section shots" aria-labelledby="shots-title">
+  <h2 id="shots-title" class="h2">A calm app that gets <em>out of the way.</em></h2>
+  <p class="sub">It lives in your menu bar or tray. Open it to connect, tune your style, or look back.</p>
+  <figure class="shot">
+    <picture>
+      <img src="assets/app-home.webp" width="1100" height="720" loading="lazy" decoding="async" alt="The WisprRam home screen showing a connected server, the hotkeys and usage stats.">
+    </picture>
+  </figure>
+  <div class="shot-row">
+    <figure class="shot"><img src="assets/app-settings.webp" width="1500" height="1500" loading="lazy" decoding="async" alt="The Recordings and archive settings: choose a folder and which files to save for each dictation."></figure>
+    <figure class="shot"><img src="assets/app-history.webp" width="1500" height="1456" loading="lazy" decoding="async" alt="The history page listing recent dictations, each with a play button for the kept recording."></figure>
+  </div>
+</section>
+
+<!-- ================================================================ HOW IT WORKS -->
+<section class="wrap section" id="how" aria-labelledby="how-title">
+  <h2 id="how-title" class="h2">Your computer talks to <em>your</em> GPU.</h2>
+  <p class="sub">Three steps, all inside your own network.</p>
+
+  <ol class="flow">
+    <li class="step">
+      <span class="num">1</span>
+      <h3>Hold and speak</h3>
+      <p>The app records from your microphone and shows the overlay pill. Release the key to finish.</p>
+      <span class="tag">Your Mac, Windows or Linux PC</span>
+    </li>
+    <li class="flow-arrow" aria-hidden="true"><svg class="ic"><use href="#i-arrow"/></svg></li>
+    <li class="step">
+      <span class="num">2</span>
+      <h3>Your server transcribes and tidies</h3>
+      <p>faster-whisper turns audio into text, then rules and a local Qwen model clean it up, in well under a second.</p>
+      <span class="tag">Your Linux machine with an NVIDIA GPU</span>
+    </li>
+    <li class="flow-arrow" aria-hidden="true"><svg class="ic"><use href="#i-arrow"/></svg></li>
+    <li class="step">
+      <span class="num">3</span>
+      <h3>Text appears</h3>
+      <p>The result is pasted into the app you were using, and optionally archived on your computer.</p>
+      <span class="tag">Any app with a text field</span>
+    </li>
+  </ol>
+
+  <div class="card latency" aria-labelledby="lat-title">
+    <h3 id="lat-title">Measured latency</h3>
+    <p class="muted">RTX 4060 Laptop (8 GB), large-v3-turbo plus qwen2.5:3b, median of 10 requests from audio upload to cleaned text.</p>
+    <dl class="bars-chart">
+      <div><dt>3 s clip, English</dt><dd><i style="--w:29%"></i><b>0.43 s</b></dd></div>
+      <div><dt>3 s clip, auto-detect</dt><dd><i style="--w:44%"></i><b>0.65 s</b></dd></div>
+      <div><dt>12.7 s clip, English</dt><dd><i style="--w:57%"></i><b>0.84 s</b></dd></div>
+      <div><dt>12.7 s clip, auto-detect</dt><dd><i style="--w:71%"></i><b>1.06 s</b></dd></div>
+      <div><dt>3 s clip, CPU fallback</dt><dd><i style="--w:100%" class="slow"></i><b>1.5 s</b></dd></div>
+    </dl>
+  </div>
+</section>
+
+<!-- ================================================================ DOWNLOAD -->
+<section class="wrap section" id="download" aria-labelledby="dl-title">
+  <h2 id="dl-title" class="h2">Get the <em>app.</em></h2>
+  <p class="sub" id="dl-sub">Pick your system. Installers are unsigned, so your OS will ask you to confirm once; the setup steps below explain how.</p>
+  <div class="dl-grid" id="dl-grid">
+    <div class="card dl" data-os="mac">
+      <h3>macOS</h3><p class="muted">Apple Silicon (M1 and newer)</p>
+      <a class="btn btn-secondary" data-asset="mac" data-gh="/releases/latest" href="#" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-down"/></svg><span>Download .dmg</span></a>
+      <small class="meta" data-meta="mac"></small>
+    </div>
+    <div class="card dl" data-os="win">
+      <h3>Windows</h3><p class="muted">Windows 10 and 11, 64-bit</p>
+      <a class="btn btn-secondary" data-asset="win" data-gh="/releases/latest" href="#" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-down"/></svg><span>Download .exe</span></a>
+      <small class="meta" data-meta="win"></small>
+    </div>
+    <div class="card dl" data-os="linux">
+      <h3>Linux</h3><p class="muted">Debian and Ubuntu (.deb)</p>
+      <a class="btn btn-secondary" data-asset="deb" data-gh="/releases/latest" href="#" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-down"/></svg><span>Download .deb</span></a>
+      <small class="meta" data-meta="deb"></small>
+    </div>
+    <div class="card dl" data-os="appimage">
+      <h3>Linux AppImage</h3><p class="muted">Any distribution, 64-bit</p>
+      <a class="btn btn-secondary" data-asset="appimage" data-gh="/releases/latest" href="#" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-down"/></svg><span>Download AppImage</span></a>
+      <small class="meta" data-meta="appimage"></small>
+    </div>
+  </div>
+  <p class="muted center small">All releases and checksums on <a data-gh="/releases" href="#" rel="noopener">GitHub</a>. You can also <a data-gh="/blob/main/docs/DEVELOPMENT.md" href="#" rel="noopener">build it yourself</a>.</p>
+</section>
+
+<!-- ================================================================ SETUP -->
+<section class="wrap section" id="setup" aria-labelledby="setup-title">
+  <h2 id="setup-title" class="h2">Set up in <em>ten minutes.</em></h2>
+  <p class="sub">First the server on your GPU machine, then the app on your computer.</p>
+
+  <div class="tabs" data-tabs>
+    <div class="tablist" role="tablist" aria-label="Setup steps">
+      <button role="tab" id="tab-server" aria-controls="panel-server" aria-selected="true">1 · Server</button>
+      <button role="tab" id="tab-app" aria-controls="panel-app" aria-selected="false" tabindex="-1">2 · App</button>
+    </div>
+
+    <div class="card panel" role="tabpanel" id="panel-server" aria-labelledby="tab-server">
+      <div class="two">
+        <div>
+          <h3>You need</h3>
+          <ul class="req">
+            <li><b>Linux</b> machine on your network (developed on Ubuntu)</li>
+            <li><b>NVIDIA GPU</b>, 6 GB VRAM or more, driver 525+. No CUDA toolkit needed. (CPU-only works, about 3× slower.)</li>
+            <li><b>Python 3.10 to 3.12</b>, or <a href="https://docs.astral.sh/uv/" rel="noopener">uv</a>, which fetches one</li>
+            <li><b><a href="https://ollama.com" rel="noopener">Ollama</a></b> for the cleanup model</li>
+            <li>8 GB RAM, about 10 GB of disk</li>
+          </ul>
+          <p class="muted small">The installer checks all of this and tells you how to fix anything missing. Full guide: <a data-gh="/blob/main/docs/SERVER_SETUP.md" href="#" rel="noopener">Server setup</a>.</p>
+        </div>
+        <div>
+          <h3>Install</h3>
+          <p class="step-l">Install Ollama if you do not have it</p>
+          <div class="code"><pre><code>curl -fsSL https://ollama.com/install.sh | sh</code></pre><button class="copy" type="button" aria-label="Copy command"><svg class="ic"><use href="#i-copy"/></svg></button></div>
+          <p class="step-l">Get the code and run the installer</p>
+          <div class="code"><pre><code id="cmd-install">git clone https://github.com/OpenVibes/wisprram
+cd wisprram/backend
+./scripts/install.sh --service</code></pre><button class="copy" type="button" aria-label="Copy commands"><svg class="ic"><use href="#i-copy"/></svg></button></div>
+          <p class="step-l">Get a 6-digit pairing code (valid 10 minutes)</p>
+          <div class="code"><pre><code>./scripts/run.sh pair</code></pre><button class="copy" type="button" aria-label="Copy command"><svg class="ic"><use href="#i-copy"/></svg></button></div>
+          <p class="muted small">The installer pulls <code>qwen2.5:3b</code>, downloads the 1.6 GB speech model, installs a systemd user service, and prints your server URL (like <code>http://192.168.1.50:8790</code>) plus the firewall command for your distro. Run <code>sudo loginctl enable-linger $USER</code> to keep it running after you log out.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card panel" role="tabpanel" id="panel-app" aria-labelledby="tab-app" hidden>
+      <div class="three">
+        <div class="os">
+          <h3>macOS</h3>
+          <ol>
+            <li>Open the <b>.dmg</b>, drag WisprRam to Applications.</li>
+            <li>The app is unsigned. Allow it once:
+              <div class="code"><pre><code>xattr -dr com.apple.quarantine /Applications/WisprRam.app</code></pre><button class="copy" type="button" aria-label="Copy command"><svg class="ic"><use href="#i-copy"/></svg></button></div>
+            </li>
+            <li>Grant <b>Microphone</b>, <b>Accessibility</b> and <b>Input Monitoring</b> in System Settings, Privacy &amp; Security. Restart the app afterwards. Re-grant Accessibility after each update.</li>
+            <li>Enter your server URL and pairing code. Hold <kbd>Right Option</kbd> and talk.</li>
+          </ol>
+        </div>
+        <div class="os">
+          <h3>Windows</h3>
+          <ol>
+            <li>Run <b>WisprRam-Setup</b>.</li>
+            <li>SmartScreen warns about an unknown publisher: click <b>More info</b>, then <b>Run anyway</b>.</li>
+            <li>Allow microphone access if Windows asks.</li>
+            <li>Enter your server URL and pairing code. Hold <kbd>Right Ctrl</kbd> and talk.</li>
+          </ol>
+        </div>
+        <div class="os">
+          <h3>Linux</h3>
+          <ol>
+            <li>Install the package:
+              <div class="code"><pre><code>sudo apt install ./wisprram_*_amd64.deb</code></pre><button class="copy" type="button" aria-label="Copy command"><svg class="ic"><use href="#i-copy"/></svg></button></div>
+              or <code>chmod +x</code> and run the <b>AppImage</b>.
+            </li>
+            <li>Optional, for pasting: <code>sudo apt install wtype xdotool</code>.</li>
+            <li><b>Wayland:</b> hold-to-talk only works in XWayland apps. Use the hands-free shortcut <kbd>Ctrl Shift Space</kbd>, or log in with X11.</li>
+            <li>Enter your server URL and pairing code.</li>
+          </ol>
+        </div>
+      </div>
+      <p class="muted small">Settings and logs live in <code>~/Library/Application Support/WisprRam</code> (macOS), <code>%APPDATA%\WisprRam</code> (Windows) and <code>~/.config/WisprRam</code> (Linux). Full guide: <a data-gh="/blob/main/docs/CLIENT_SETUP.md" href="#" rel="noopener">App setup</a>.</p>
+    </div>
+  </div>
+
+  <div class="card keys">
+    <h3>Hotkeys</h3>
+    <div class="keytable" role="table" aria-label="Hotkeys">
+      <div role="row"><span role="cell">Hold to talk</span><span role="cell"><kbd>Right ⌥</kbd> on macOS · <kbd>Right Ctrl</kbd> on Windows and Linux</span></div>
+      <div role="row"><span role="cell">Lock hands-free</span><span role="cell">Double-tap the talk key</span></div>
+      <div role="row"><span role="cell">Hands-free on or off</span><span role="cell"><kbd>⌘ Shift Space</kbd> · <kbd>Ctrl Shift Space</kbd></span></div>
+      <div role="row"><span role="cell">Command mode</span><span role="cell"><kbd>⌘ Shift E</kbd> · <kbd>Ctrl Shift E</kbd></span></div>
+      <div role="row"><span role="cell">Cancel</span><span role="cell"><kbd>Esc</kbd></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================ PRIVACY -->
+<section class="wrap section" aria-labelledby="priv-title">
+  <div class="banner banner-c">
+    <div class="banner-copy">
+      <h2 id="priv-title" class="h2 on-dark">Nothing leaves <em>your network.</em></h2>
+      <p>No cloud service, no account, no analytics. Transcription and cleanup run on your GPU, history sits in a SQLite file on your server, and your archive is a folder on your computer. The code is MIT licensed, so you can read every line that touches your voice.</p>
+      <p class="fine">Traffic on your LAN is plain HTTP with bearer tokens. Keep it on a network you trust, or reach it through Tailscale or WireGuard. <a data-gh="/blob/main/SECURITY.md" href="#" rel="noopener">Read the threat model</a>.</p>
+    </div>
+    <dl class="ledger" aria-label="Where your data goes">
+      <div><dt>Your voice</dt><dd>your computer, then your server</dd></div>
+      <div><dt>Transcription</dt><dd>your GPU</dd></div>
+      <div><dt>Cleanup</dt><dd>your Ollama</dd></div>
+      <div><dt>History</dt><dd>SQLite on your server</dd></div>
+      <div><dt>Archive</dt><dd>a folder you choose</dd></div>
+      <div><dt>Telemetry</dt><dd>none</dd></div>
+      <div><dt>Accounts</dt><dd>none</dd></div>
+    </dl>
+  </div>
+</section>
+
+<!-- ================================================================ FAQ -->
+<section class="wrap section narrow" id="faq" aria-labelledby="faq-title">
+  <h2 id="faq-title" class="h2">Questions, <em>answered.</em></h2>
+  <div class="faq">
+    <details><summary>Do I need an NVIDIA GPU?</summary><p>A GPU makes dictation feel instant: about 0.4 s for a short clip. Without one the server falls back to a smaller Whisper model on the CPU, around 1.5 s for 3 seconds of speech, which is still usable.</p></details>
+    <details><summary>Which languages work?</summary><p>Whisper large-v3-turbo handles around 100 languages and can detect the language automatically. Fixing the language saves about 0.2 s. Cleanup quality outside English depends on the LLM you choose; Qwen2.5 is decent in the major languages.</p></details>
+    <details><summary>Can I use it away from home?</summary><p>Yes, through a VPN. Install Tailscale on the server and your laptop and use the Tailscale address as the server URL. Never expose port 8790 to the internet.</p></details>
+    <details><summary>Why is the app unsigned?</summary><p>Signing certificates cost money and this is a free, independent project. macOS needs one <code>xattr</code> command and Windows shows a SmartScreen prompt once. If you prefer, build it from source; the repository has scripts for all three platforms.</p></details>
+    <details><summary>Can I use a better cleanup model?</summary><p>Yes. <code>ollama pull qwen2.5:7b</code> and set it in the server settings. It follows instructions better and needs about 5 GB of VRAM and a few hundred milliseconds more.</p></details>
+    <details><summary>Does it keep my recordings?</summary><p>Only if you ask. By default the audio is discarded as soon as the text is produced. You can switch on a local archive in the app, and optionally audio retention on the server so you can replay history from any device.</p></details>
+    <details><summary>How is this different from Wispr Flow?</summary><p>Same idea (hold a key, speak, polished text appears), but WisprRam is open source and self-hosted: you run the models, you own the data, and there is no subscription. It is an independent project, not affiliated with Wispr.</p></details>
+    <details><summary>Is there a mobile app?</summary><p>Not yet. The server has a plain HTTP API, so one could be built; see the API reference in the docs.</p></details>
+  </div>
+</section>
+
+<!-- ================================================================ FINAL CTA -->
+<section class="wrap section">
+  <div class="banner banner-d final">
+    <h2 class="h2 on-dark">Talk more. <em>Type less.</em></h2>
+    <p>Free, open source and yours to run.</p>
+    <div class="cta">
+      <a class="btn btn-light btn-lg" id="dl-final" data-gh="/releases/latest" href="#" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-down"/></svg><span>Download WisprRam</span></a>
+      <a class="btn btn-glass btn-lg" data-gh="" href="#" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-gh"/></svg><span>View on GitHub</span></a>
+    </div>
+  </div>
+</section>
+
+<noscript>
+  <section class="wrap section narrow">
+    <div class="card">
+      <h3>JavaScript is off</h3>
+      <p>The page works without it, but the links need it. Download from <a href="https://github.com/OpenVibes/wisprram/releases/latest">GitHub releases</a> and read the <a href="https://github.com/OpenVibes/wisprram/tree/main/docs">docs</a>.</p>
+    </div>
+  </section>
+</noscript>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <div class="foot-brand">
+      <a class="brand" href="#top"><img src="assets/favicon.png" width="26" height="26" alt=""><span>WisprRam</span></a>
+      <p class="muted small">Your voice, your GPU, your words.<br>MIT licensed · Built by <span id="org">GoodLook Labs</span>.</p>
+    </div>
+    <nav class="foot-links" aria-label="Footer">
+      <div>
+        <h4>Product</h4>
+        <a href="#features">Features</a><a href="#how">How it works</a><a href="#download">Download</a><a href="#faq">FAQ</a>
+      </div>
+      <div>
+        <h4>Docs</h4>
+        <a data-gh="/blob/main/docs/SERVER_SETUP.md" href="#" rel="noopener">Server setup</a>
+        <a data-gh="/blob/main/docs/CLIENT_SETUP.md" href="#" rel="noopener">App setup</a>
+        <a data-gh="/blob/main/docs/ARCHIVE.md" href="#" rel="noopener">Local archive</a>
+        <a data-gh="/blob/main/docs/API.md" href="#" rel="noopener">API reference</a>
+      </div>
+      <div>
+        <h4>Project</h4>
+        <a data-gh="" href="#" rel="noopener">GitHub</a>
+        <a data-gh="/blob/main/CHANGELOG.md" href="#" rel="noopener">Changelog</a>
+        <a data-gh="/blob/main/CONTRIBUTING.md" href="#" rel="noopener">Contributing</a>
+        <a data-gh="/blob/main/SECURITY.md" href="#" rel="noopener">Security</a>
+        <a data-gh="/blob/main/LICENSE" href="#" rel="noopener">License</a>
+      </div>
+    </nav>
+  </div>
+  <div class="wrap foot-fine">
+    <p class="muted small">WisprRam is an independent open-source project and is not affiliated with or endorsed by Wispr, OpenAI, Ollama or Alibaba. Whisper, Ollama and Qwen are the work of their respective authors.</p>
+  </div>
+</footer>
+
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,157 @@
+# electron-builder config for WisprRam. Build output: client/release/<version>/
+# Rebuild: see scripts/build-mac.sh and scripts/build-win-linux.sh (docs/DEVELOPMENT.md)
+appId: com.anirudh.wisprram
+productName: WisprRam
+copyright: Copyright (c) 2026 Anirudh Sharma
+directories:
+  buildResources: build
+  output: release/${version}
+
+# GitHub Releases are created by .github/workflows/release.yml, which passes `--publish never` and
+# uploads the artifacts itself. This block only records where releases live (it is also written to
+# the app's app-update.yml); nothing is ever published from a local build.
+publish:
+  provider: github
+  owner: OpenVibes
+  repo: wisprram
+  releaseType: draft
+
+# Code is bundled by electron-vite into out/; only production node_modules are packed.
+files:
+  - out/**
+  - package.json
+  # Explicit excludes as a safety net. Never add a platform-level `files:` list that contains only
+  # "!" patterns: electron-builder then prepends "**/*" and packs the whole project (src/, release/…).
+  - "!src/**"
+  - "!dev/**"
+  - "!release/**"
+  - "!build/**"
+  - "!resources/**"
+  - "!*.config.ts"
+  - "!tsconfig*.json"
+  - "!**/*.test.*"
+  - "!**/*.map"
+  - "!**/node_modules/*/{test,tests,__tests__,docs,example,examples,.github}/**"
+  - "!**/node_modules/**/*.{md,markdown,ts,mts,cts}"
+  - "!**/node_modules/**/{CHANGELOG,README,LICENSE-*}*"
+  - "!**/node_modules/uiohook-napi/{src,libuiohook,binding.gyp}/**"
+  - "!**/node_modules/uiohook-napi/prebuilds/{darwin-x64,linux-arm64,linux-loong64,win32-arm64}/**"
+
+# Runtime resources (tray icons, app icon). The main process loads them from
+# join(process.resourcesPath, 'resources') when packaged.
+extraResources:
+  - from: resources
+    to: resources
+
+# uiohook-napi ships N-API prebuilds (loaded with node-gyp-build); native .node files
+# cannot be loaded from inside an asar archive.
+asar: true
+asarUnpack:
+  - "**/node_modules/uiohook-napi/**"
+npmRebuild: false
+nodeGypRebuild: false
+buildDependenciesFromSource: false
+
+# ---------------------------------------------------------------- macOS
+mac:
+  target:
+    - target: dmg
+      arch: [arm64]
+  category: public.app-category.productivity
+  icon: build/icon.png
+  # Ad-hoc signature ("-"): an unsigned arm64 binary is killed by macOS, a
+  # properly ad-hoc signed one runs (after removing quarantine). No Developer ID,
+  # no notarization.
+  identity: "-"
+  hardenedRuntime: false
+  gatekeeperAssess: false
+  notarize: false
+  extendInfo:
+    NSMicrophoneUsageDescription: WisprRam uses the microphone to transcribe what you dictate.
+    NSAppleEventsUsageDescription: WisprRam uses System Events to detect the frontmost app and to paste the transcript.
+    LSUIElement: false
+
+dmg:
+  title: WisprRam ${version}
+  artifactName: WisprRam-${version}-arm64.dmg
+  background: build/background.png
+  iconSize: 96
+  window:
+    width: 660
+    height: 400
+  contents:
+    - x: 170
+      y: 185
+      type: file
+    - x: 490
+      y: 185
+      type: link
+      path: /Applications
+
+# ---------------------------------------------------------------- Windows
+win:
+  target:
+    - target: nsis
+      arch: [x64]
+  icon: build/icon.png
+  artifactName: WisprRam-Setup-${version}.exe
+
+nsis:
+  oneClick: false
+  perMachine: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: always
+  createStartMenuShortcut: true
+  shortcutName: WisprRam
+  runAfterFinish: true
+  deleteAppDataOnUninstall: false
+
+# ---------------------------------------------------------------- Linux
+linux:
+  target:
+    - target: deb
+      arch: [x64]
+    - target: AppImage
+      arch: [x64]
+  icon: build/icon.png
+  category: Utility
+  packageCategory: utils
+  maintainer: Anirudh Sharma <126901961+anisharma07@users.noreply.github.com>
+  vendor: Anirudh Sharma
+  synopsis: Self-hosted voice dictation
+  description: Hold a hotkey, speak, and the cleaned-up transcript from your own WisprRam server is pasted into the active app.
+  executableName: wisprram
+  syncDesktopName: true
+  desktop:
+    entry:
+      Name: WisprRam
+      Comment: Self-hosted voice dictation
+      Keywords: dictation;voice;speech;transcribe;
+      StartupWMClass: WisprRam
+
+deb:
+  packageName: wisprram
+  priority: optional
+  # electron-builder's default Electron depends + what uiohook-napi's linux prebuild links
+  # against (readelf NEEDED: libX11, libXrandr, libXtst, libXt). libxt6 / libgtk-3-0 are
+  # satisfied by the t64 packages on Ubuntu 24.04+/26.04 (they Provide the old names).
+  depends:
+    - libgtk-3-0
+    - libnotify4
+    - libnss3
+    - libxss1
+    - libxtst6
+    - xdg-utils
+    - libatspi2.0-0
+    - libuuid1
+    - libsecret-1-0
+    - libx11-6
+    - libxrandr2
+    - libxt6
+  recommends:
+    - wtype
+    - ydotool
+    - xdotool
+
+appImage:
+  artifactName: WisprRam-${version}-x86_64.AppImage
