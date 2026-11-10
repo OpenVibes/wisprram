@@ -19,7 +19,7 @@ wisprram/
     src/renderer/             main window (index.html) and overlay pill (overlay.html); React code in src/
     src/renderer/src/mock/    browser-only mock of window.wisprram for UI work
     dev/mock-server.mjs       fake WisprRam server for developing the app without a GPU
-    build/                    app icon, dmg background, make-icons.py
+    build/                    logo artwork, app icon, dmg background, make-icons.py
     resources/                tray icons
     electron-builder.yml      packaging config
   docs/                       documentation (you are here)
@@ -116,7 +116,7 @@ Nothing is ever published from a local build: both scripts pass `--publish never
 
 ### Icons
 
-The app icon is `client/build/icon.png` (1024 px). `build/make-icons.py` regenerates the icon and the dmg background (needs Pillow); tray icons are in `client/resources/tray/`.
+All icons come from the logo artwork in `client/build/logo-source.png`. `client/build/make-icons.py` (needs Pillow and numpy) separates the wave mark from its background and writes the app icon (`client/build/icon.png`, 1024 px), the tray icons in `client/resources/tray/`, the sidebar mark `client/src/renderer/src/assets/logo-mark.png` and the website's favicons and social image in `site/assets/`. Pass Figtree and Instrument Serif Italic font files as arguments to render `og.png` with the site's fonts.
 
 ## Releasing
 

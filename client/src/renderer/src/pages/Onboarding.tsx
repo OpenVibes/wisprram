@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useApp } from '../app/AppContext'
+import { Brand, LogoMark } from '../components/Brand'
 import { ConnectForm } from '../components/ConnectForm'
 import { Icon } from '../components/Icon'
 import { MicSection } from '../components/MicSection'
@@ -49,10 +50,7 @@ export function Onboarding(): React.JSX.Element {
     <div className="onboarding">
       <div className="drag-strip" />
       <div className="ob-top">
-        <div className="brand">
-          <Icon name="logo" size={30} strokeWidth={2.2} />
-          WisprRam
-        </div>
+        <Brand />
         <Button variant="ghost" size="sm" onClick={() => void finish()}>
           Skip setup
         </Button>
@@ -67,13 +65,11 @@ export function Onboarding(): React.JSX.Element {
 
         {step === 'welcome' && (
           <div className="ob-body">
-            <div className="hero-mark">
-              <Icon name="mic" size={34} />
-            </div>
+            <LogoMark height={72} className="hero-logo" />
             <h1 tabIndex={-1} ref={headingRef}>
-              Speak. It <em>types</em>.
+              Wispr to your <em>RAM</em>.
             </h1>
-            <p className="lead">WisprRam turns your voice into clean, punctuated text in any app. The heavy lifting runs on your own PC, so your audio never goes to a third party.</p>
+            <p className="lead">Speak, and it types. WisprRam turns your voice into clean, punctuated text in any app. The heavy lifting runs on your own PC, so your audio never goes to a third party.</p>
             <ul className="bullets">
               <li>
                 <Icon name="bolt" size={16} /> Hold a key, talk, release. Text appears at your cursor.

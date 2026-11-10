@@ -5,8 +5,9 @@
 <h1 align="center">WisprRam</h1>
 
 <p align="center">
-  <strong>Hold a key, speak, and clean text appears in any app.<br>
-  Your voice, your GPU, your words. Nothing leaves your network.</strong>
+  <strong><em>Wispr to your RAM.</em></strong><br>
+  Hold a key, speak, and clean text appears in any app.<br>
+  Your voice, your GPU, your words. Nothing leaves your network.
 </p>
 
 <p align="center">
@@ -32,7 +33,7 @@
   </picture>
 </p>
 
-WisprRam is a self-hosted, open-source alternative to [Wispr Flow](https://wisprflow.ai). You run a small server on a Linux machine with an NVIDIA GPU. It transcribes with [faster-whisper](https://github.com/SYSTRAN/faster-whisper) (`large-v3-turbo`) and tidies the text with a local LLM through [Ollama](https://ollama.com) (`qwen2.5:3b`). Lightweight desktop apps for macOS, Windows and Linux record your voice, send it to your server over your own network and paste the result into whatever app has focus.
+**Wispr to your RAM.** WisprRam is a self-hosted, open-source voice dictation app. You run a small server on a Linux machine with an NVIDIA GPU. It transcribes with [faster-whisper](https://github.com/SYSTRAN/faster-whisper) (`large-v3-turbo`) and tidies the text with a local LLM through [Ollama](https://ollama.com) (`qwen2.5:3b`). Lightweight desktop apps for macOS, Windows and Linux record your voice, send it to your server over your own network and paste the result into whatever app has focus.
 
 A 3 second dictation comes back in about **0.4 seconds** on a laptop RTX 4060. No subscription, no cloud, no account.
 
@@ -215,4 +216,4 @@ Bug reports, ideas and pull requests are welcome. Start with [CONTRIBUTING.md](C
 
 ## Acknowledgements
 
-WisprRam stands on excellent open-source work: [OpenAI Whisper](https://github.com/openai/whisper), [faster-whisper](https://github.com/SYSTRAN/faster-whisper) and [CTranslate2](https://github.com/OpenNMT/CTranslate2), [Ollama](https://ollama.com), the [Qwen](https://github.com/QwenLM/Qwen2.5) models, [Electron](https://www.electronjs.org), [uiohook-napi](https://github.com/SnosMe/uiohook-napi), [FastAPI](https://fastapi.tiangolo.com) and [PyAV](https://github.com/PyAV-Org/PyAV). Inspired by [Wispr Flow](https://wisprflow.ai); WisprRam is not affiliated with it.
+WisprRam stands on excellent open-source work: [OpenAI Whisper](https://github.com/openai/whisper), [faster-whisper](https://github.com/SYSTRAN/faster-whisper) and [CTranslate2](https://github.com/OpenNMT/CTranslate2), [Ollama](https://ollama.com), the [Qwen](https://github.com/QwenLM/Qwen2.5) models, [Electron](https://www.electronjs.org), [uiohook-napi](https://github.com/SnosMe/uiohook-napi), [FastAPI](https://fastapi.tiangolo.com) and [PyAV](https://github.com/PyAV-Org/PyAV).

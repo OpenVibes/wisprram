@@ -172,8 +172,14 @@ a {
   letter-spacing: -0.035em;
   color: var(--text);
 }
-.brand svg {
+.brand svg,
+.brand .logo-mark {
   flex: none;
+}
+.logo-mark {
+  display: block;
+  width: auto;
+  user-select: none;
 }
 .nav-item {
   display: flex;
@@ -1337,6 +1343,10 @@ kbd {
   font-size: 15px;
   line-height: 1.55;
 }
+.hero-logo {
+  align-self: flex-start;
+  margin-bottom: 4px;
+}
 .hero-mark {
   display: grid;
   place-items: center;
@@ -1755,6 +1765,10 @@ kbd {
     justify-content: center;
     padding: 0;
   }
+  .brand .logo-mark {
+    width: 36px;
+    height: auto !important;
+  }
   .side-card {
     display: none;
   }
@@ -1768,7 +1782,7 @@ h1[tabindex='-1']:focus {
   box-shadow: none;
 }
 
-/* ---------- Wispr-style chrome: tooltips, tabs, lists, banners ---------- */
+/* ---------- App chrome: tooltips, tabs, lists, banners ---------- */
 [data-tip]:hover::after,
 [data-tip]:focus-visible::after {
   content: attr(data-tip);

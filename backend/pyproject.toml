@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "wisprram-server"
 version = "0.2.0"
-description = "Self-hosted Wispr Flow-style dictation backend (faster-whisper + Ollama)"
+description = "WisprRam server: self-hosted voice dictation backend (faster-whisper + Ollama)"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [

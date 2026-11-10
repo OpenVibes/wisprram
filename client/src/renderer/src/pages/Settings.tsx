@@ -160,7 +160,7 @@ export function Settings(): React.JSX.Element {
         </Card>
       )}
 
-      <Card id="sec-about" title="About" description="WisprRam is free, open-source software (MIT licence). Your data stays with you.">
+      <Card id="sec-about" title="About" description="Wispr to your RAM. WisprRam is free, open-source software (MIT licence), and your data stays with you.">
         <dl className="facts">
           <div>
             <dt>Version</dt>

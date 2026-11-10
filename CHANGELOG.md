@@ -13,6 +13,7 @@ All notable changes to WisprRam are documented here. The format follows [Keep a 
 - **CI/CD**: GitHub Actions for tests, Pages deployment and tagged releases (dmg, exe, deb, AppImage).
 
 ### Changed
+- **New look**: a new wave logo for the app, tray, installers and website, a calm warm interface with Figtree and Instrument Serif, and the slogan *Wispr to your RAM*.
 - `PLAN.md` became [docs/DESIGN.md](docs/DESIGN.md), rewritten as a general architecture document.
 - Build scripts no longer depend on a specific machine; `scripts/build-win-linux.sh` builds in local Docker.
 - The server URL field starts empty instead of suggesting an address.

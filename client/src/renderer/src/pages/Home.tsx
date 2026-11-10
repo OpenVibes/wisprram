@@ -75,10 +75,10 @@ export function Home(): React.JSX.Element {
         id="home"
         title={
           <>
-            Speak. It <em>writes</em>.
+            Wispr to your <em>RAM</em>.
           </>
         }
-        subtitle="Hold your dictation key, talk, let go. Clean, punctuated text lands in whichever app you are using, and your voice never leaves your own network."
+        subtitle="Speak, and it writes. Hold your dictation key, talk, let go. Clean, punctuated text lands in whichever app you are using, and your voice never leaves your own network."
         examples={[
           { from: '“um so we should meet at ten thirty”', to: 'We should meet at 10:30.' },
           { from: '“dear team comma thanks”', to: 'Dear team, thanks!' }

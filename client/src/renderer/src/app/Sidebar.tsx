@@ -1,3 +1,4 @@
+import { Brand } from '../components/Brand'
 import { Icon, type IconName } from '../components/Icon'
 import { CONNECTION_LABEL, StatusDot, connectionTone } from '../components/StatusChip'
 import { useToast } from '../components/Toast'
@@ -37,10 +38,7 @@ function NavLink({ route, label, icon, current }: { route: Route; label: string;
 export function Sidebar({ route }: { route: Route }): React.JSX.Element {
   return (
     <aside className="sidebar">
-      <div className="brand">
-        <Icon name="logo" size={30} strokeWidth={2.2} />
-        WisprRam
-      </div>
+      <Brand />
       <nav aria-label="Main">
         {NAV.map((n) => (
           <NavLink key={n.route} {...n} current={route} />

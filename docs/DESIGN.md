@@ -2,7 +2,7 @@
 
 How WisprRam is put together and why. For installation see [SERVER_SETUP.md](SERVER_SETUP.md) and [CLIENT_SETUP.md](CLIENT_SETUP.md); for the wire protocol see [API.md](API.md).
 
-WisprRam is a self-hosted, Wispr Flow-style voice dictation system. Hold a key, speak, release: your words appear, cleaned up and punctuated, in whatever app has focus. All AI runs on a Linux machine with an NVIDIA GPU that you own. Light desktop clients for macOS, Windows and Linux talk to it over your network.
+WisprRam (*Wispr to your RAM*) is a self-hosted voice dictation system. Hold a key, speak, release: your words appear, cleaned up and punctuated, in whatever app has focus. All AI runs on a Linux machine with an NVIDIA GPU that you own. Light desktop clients for macOS, Windows and Linux talk to it over your network.
 
 ```
  +------------- Client (macOS / Windows / Linux) -------------+        +------------- Your GPU machine ---------------+
