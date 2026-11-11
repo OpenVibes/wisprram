@@ -179,6 +179,30 @@ h1 em { background: linear-gradient(120deg, var(--accent), var(--accent-2)); -we
 .stat b small { font-size: .5em; letter-spacing: 0; margin-left: 2px; color: var(--muted); font-family: var(--sans); }
 .stat span { display: block; margin-top: 6px; color: var(--muted); font-size: 14.5px; line-height: 1.4; }
 
+/* ------------------------------------------------------------ film */
+.film .sub { margin-bottom: 36px; }
+.film-frame { position: relative; margin: 0; aspect-ratio: 16 / 9; border-radius: var(--r); overflow: hidden; background: #0A0812; border: 1px solid var(--line); box-shadow: var(--shadow-lg); }
+.film-frame video { display: block; width: 100%; height: 100%; object-fit: cover; background: #0A0812; }
+.film-frame video:not([controls]) { cursor: pointer; }
+.film-play {
+  position: absolute; left: clamp(12px, 3vw, 28px); bottom: clamp(12px, 3vw, 28px);
+  display: inline-flex; align-items: center; gap: 12px; padding: 8px 22px 8px 8px; border: 0; border-radius: 999px;
+  background: #fff; color: #1C1B1A; font: 600 16px/1.2 var(--sans); text-align: left; cursor: pointer;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .4); transition: transform .15s ease, box-shadow .2s ease;
+}
+.film-play[hidden] { display: none; }
+.film-play:hover { transform: translateY(-1px); box-shadow: 0 14px 36px rgba(0, 0, 0, .5); }
+.film-play:active { transform: translateY(1px); }
+.film-play .disc { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: #1C1B1A; color: #fff; flex: none; }
+.film-play .disc .ic { width: 20px; height: 20px; margin-left: 2px; }
+.film-play small { display: block; margin-top: 2px; font-weight: 500; font-size: 13px; color: #6B6862; }
+@media (max-width: 560px) {
+  .film-play { gap: 9px; padding: 6px 16px 6px 6px; font-size: 14.5px; }
+  .film-play .disc { width: 34px; height: 34px; }
+  .film-play .disc .ic { width: 16px; height: 16px; }
+  .film-play small { display: none; }
+}
+
 /* ------------------------------------------------------------ sections */
 .section { padding-top: clamp(72px, 11vw, 128px); }
 .h2 { font-size: clamp(36px, 7vw, 60px); line-height: 1.02; text-align: center; text-wrap: balance; }

@@ -20,6 +20,7 @@
 
 <p align="center">
   <a href="https://openvibes.github.io/wisprram/">Website</a> ·
+  <a href="https://openvibes.github.io/wisprram/#film">Watch the film</a> ·
   <a href="https://github.com/OpenVibes/wisprram/releases/latest">Download</a> ·
   <a href="docs/SERVER_SETUP.md">Server setup</a> ·
   <a href="docs/CLIENT_SETUP.md">App setup</a> ·
@@ -36,6 +37,14 @@
 **Wispr to your RAM.** WisprRam is a self-hosted, open-source voice dictation app. You run a small server on a Linux machine with an NVIDIA GPU. It transcribes with [faster-whisper](https://github.com/SYSTRAN/faster-whisper) (`large-v3-turbo`) and tidies the text with a local LLM through [Ollama](https://ollama.com) (`qwen2.5:3b`). Lightweight desktop apps for macOS, Windows and Linux record your voice, send it to your server over your own network and paste the result into whatever app has focus.
 
 A 3 second dictation comes back in about **0.4 seconds** on a laptop RTX 4060. No subscription, no cloud, no account.
+
+<p align="center">
+  <a href="https://openvibes.github.io/wisprram/#film">
+    <img src="docs/images/film.jpg" alt="Watch WisprRam in one minute: a still from the product film, with a Play the film button" width="860">
+  </a>
+  <br>
+  <a href="https://openvibes.github.io/wisprram/#film"><strong>Watch WisprRam in one minute</strong></a> (music only, no narration)
+</p>
 
 ## Features
 

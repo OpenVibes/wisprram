@@ -255,10 +255,27 @@
     }
   }
 
+  // ---------------------------------------------------------------- film: one play button, then the browser's own controls
+  var film = $('#film-video')
+  var filmPlay = $('#film-play')
+  if (film && filmPlay) {
+    film.removeAttribute('controls')
+    filmPlay.hidden = false
+    var showControls = function () { filmPlay.hidden = true; film.setAttribute('controls', '') }
+    var startFilm = function () {
+      showControls()
+      var p = film.play()
+      if (p && p.catch) p.catch(function () { /* blocked or failed: the native controls are there to try again */ })
+    }
+    filmPlay.addEventListener('click', startFilm)
+    film.addEventListener('click', function () { if (!filmPlay.hidden) startFilm() })
+    film.addEventListener('play', showControls)
+  }
+
   // ---------------------------------------------------------------- scroll reveal
   if ('IntersectionObserver' in window && !reduceMotion) {
     document.documentElement.classList.add('reveal-ready')
-    var targets = $$('.stat, .card, .banner, .step, .shot, .faq details, .section > .h2, .section > .sub')
+    var targets = $$('.stat, .card, .banner, .step, .shot, .film-frame, .faq details, .section > .h2, .section > .sub')
     targets.forEach(function (el) { el.classList.add('rv') })
     var io = new IntersectionObserver(function (es) {
       es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target) } })
